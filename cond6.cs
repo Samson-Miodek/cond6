@@ -22,9 +22,9 @@ namespace ConsoleApp2
             p3.y = 3;
 
 
-            var p = FindСoordinates(p1, p2, p3);//если нельзя построить квадрат - вернет 0 0
-            Console.WriteLine(p.x);//-3
-            Console.WriteLine(p.y);//2
+            var p4 = FindСoordinates(p1, p2, p3);//если нельзя построить квадрат - вернет 0 0
+            Console.WriteLine(p4.x);//-3
+            Console.WriteLine(p4.y);//2
         }
 
         public struct Point
