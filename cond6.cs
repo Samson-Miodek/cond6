@@ -10,16 +10,16 @@ namespace ConsoleApp2
 
             var p1 = new Point();
 
-            p1.x = 2;
-            p1.y = 2;
+            p1.x = -2;
+            p1.y = 1;
 
             var p2 = new Point();
-            p2.x = 4;
+            p2.x = -1;
             p2.y = 2;
 
             var p3 = new Point();
-            p3.x = 2;
-            p3.y = 4;
+            p3.x = -2;
+            p3.y = 3;
 
 
             var p = FindСoordinates(p1, p2, p3);//если нельзя построить квадрат - вернет 0 0
@@ -36,6 +36,12 @@ namespace ConsoleApp2
         public static double GetLength(double dx, double dy)
         {
             return Math.Sqrt(dx * dx + dy * dy);
+        }
+
+        //сравнение двух чисел с плавующей точкой с погрешностью
+        public static bool EqualTo(double value1, double value2, double epsilon)
+        {
+            return Math.Abs(value1 - value2) < epsilon;
         }
 
         public static Point FindСoordinates(Point p1, Point p2, Point p3)
@@ -57,7 +63,7 @@ namespace ConsoleApp2
 
             var lengths = new double[] { la, lb, lc };
             var diagonal = -1.0;
-
+   
             //1 у квадрата все стороны равны
             //2 Диагональ квадрата равна стороне квадрата, умноженной на корень из двух
             //проверяем есть ли две равные длины
@@ -66,7 +72,7 @@ namespace ConsoleApp2
             if (la == lb || la == lc || lb == lc)
                 for (var i = 0; i < lengths.Length; i++)
                     for (var j = 0; j < lengths.Length; j++)
-                        if (lengths[i] == lengths[j] * sqrt2)
+                        if(EqualTo(lengths[i], lengths[j] * sqrt2, 0.00001))//погрешность измерений
                             diagonal = lengths[i];
 
             if (diagonal < 0)
