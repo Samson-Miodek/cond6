@@ -7,11 +7,9 @@ namespace ConsoleApp2
         //Cond6. * Заданы координаты трех точек на плоскости. Являются ли они вершинами квадрата? Если да, то найти координаты четвертой вершины.
         static void Main(string[] args)
         {
-
             var p1 = new Point();
-
             p1.x = -2;
-            p1.y = 1;
+            p1.y = 3;
 
             var p2 = new Point();
             p2.x = -1;
@@ -19,8 +17,7 @@ namespace ConsoleApp2
 
             var p3 = new Point();
             p3.x = -2;
-            p3.y = 3;
-
+            p3.y = 1;
 
             var p4 = FindСoordinates(p1, p2, p3);//если нельзя построить квадрат - вернет 0 0
             Console.WriteLine(p4.x);//-3
@@ -63,16 +60,19 @@ namespace ConsoleApp2
 
             var lengths = new double[] { la, lb, lc };
             var diagonal = -1.0;
-   
+
             //1 у квадрата все стороны равны
             //2 Диагональ квадрата равна стороне квадрата, умноженной на корень из двух
             //проверяем есть ли две равные длины
             //и проверяем есть ли длина равная другой длине умноженной на корень 2 (ищем диагональ)
+
             var sqrt2 = Math.Sqrt(2);
-            if (la == lb || la == lc || lb == lc)
+            var measurementError = 0.000001;//погрешность вычислений
+
+            if (EqualTo(la, lb, measurementError) || EqualTo(la, lc, measurementError) || EqualTo(lb, lc, measurementError))
                 for (var i = 0; i < lengths.Length; i++)
                     for (var j = 0; j < lengths.Length; j++)
-                        if(EqualTo(lengths[i], lengths[j] * sqrt2, 0.00001))//погрешность измерений
+                        if (EqualTo(lengths[i], lengths[j] * sqrt2, measurementError))
                             diagonal = lengths[i];
 
             if (diagonal < 0)
